@@ -1,6 +1,5 @@
 ## Requirements
 
-- C compiler (gcc recommended)
 - ncurses library
 
 ---
