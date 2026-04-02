@@ -21,3 +21,6 @@ $ sudo pacman -S ncurses
 $ gcc -ansi -o arcade -Wall arcade.c -lncurses
 $ ./arcade
 ```
+### Current Issues
+- Boarder flickers when navigating menu
+- Any keypresses refresh the page (need to filter out any keys that aren't supported)
