@@ -1,5 +1,6 @@
 #include <ncurses.h>
 #include <string.h>
+#include "blackjack.h"
 
 #define MENU_ITEMS 3
 
@@ -83,7 +84,9 @@ int main(void) {
     if (choice == 0) {
         strcpy(buffer, "You selected Tic-Tac-Toe.");
     } else if (choice == 1) {
-        strcpy(buffer, "You selected Blackjack.");
+        extern void run_blackjack();
+        run_blackjack();
+        return 0;
     } else {
         strcpy(buffer, "You selected Settings.");
     }
