@@ -1,3 +1,9 @@
+/* Filename: arcade.c
+ * Author: Dre Harm
+ * Date: 4/22/26
+ * Description: This is the main menu for of the program, allowing the user to select from the provided games.
+ */
+
 #include <ncurses.h>
 #include <string.h>
 #include "blackjack.h"
@@ -30,7 +36,7 @@ int main(void) {
         clear();
         getmaxyx(stdscr, row, col);
 
-        box(stdscr, 0, 0); /* draws the boarder */
+        box(stdscr, 0, 0);
 
         char *title = "=== Arcade Games ===";
         char *instructions = "Use arrow keys for navigation, 'Enter' to select, and 'q' to quit";
@@ -38,17 +44,17 @@ int main(void) {
         mvprintw(4, (col - strlen(instructions)) / 2, "%s", instructions);
 
 
-        start_y = row / 2 - MENU_ITEMS / 2; /* calculates the starting y position for the menu items */
+        start_y = row / 2 - MENU_ITEMS / 2;
 
         int i;
-        for (i = 0; i < MENU_ITEMS; i++) { /* prints the menu items */
+        for (i = 0; i < MENU_ITEMS; i++) {
             int x = (col - strlen(choices[i])) / 2;
 
             if (i == highlight) { 
-                attron(A_REVERSE); /* highlights the selected menu item */
-                mvprintw(start_y + i, x, "%s", choices[i]); /* prints the menu item */
-                attroff(A_REVERSE); /* turns off the highlight for the next item */
-            } else { /* prints the non-highlighted menu items */
+                attron(A_REVERSE); 
+                mvprintw(start_y + i, x, "%s", choices[i]);
+                attroff(A_REVERSE); 
+            } else {
                 mvprintw(start_y + i, x, "%s", choices[i]);
             }
         }
@@ -84,8 +90,13 @@ int main(void) {
     if (choice == 0) {
         strcpy(buffer, "You selected Tic-Tac-Toe.");
     } else if (choice == 1) {
-        extern void run_blackjack();
+        endwin();
         run_blackjack();
+        initscr();
+        cbreak();
+        noecho();
+        keypad(stdscr, 1);
+        curs_set(0);
         return 0;
     } else {
         strcpy(buffer, "You selected Settings.");
