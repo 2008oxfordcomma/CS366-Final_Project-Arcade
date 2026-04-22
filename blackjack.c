@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include <string.h>
+#include <stdio.h>
 
 #define DECK_SIZE 52
 
@@ -86,7 +87,7 @@ void print_hand(int y, int col, char *label, Card hand[], int size, int hide_fir
         if (i == 0 && hide_first) {
             strcat(line, "[??] ");
         } else {
-            snprintf(temp, sizeof(temp), "[%s] ", ranks[hand[i].rank]);
+            sprintf(temp, "[%s] ", ranks[hand[i].rank]);
             strcat(line, temp);
         }
     }
@@ -96,12 +97,6 @@ void print_hand(int y, int col, char *label, Card hand[], int size, int hide_fir
 
 /* Main game */
 void run_blackjack() {
-    initscr(); /* starts ncurses mode */
-    cbreak(); /* turns off line buffering (keys immedietly to program(h/s,y/n)) */
-    noecho(); /* key presses are hidden from players view */
-    keypad(stdscr, 1); /* enables special keys(otherwise weird codes) */
-    curs_set(0); /* hides blinking cursor */
-
     srand(time(NULL));
 
     int play_again = 1;
