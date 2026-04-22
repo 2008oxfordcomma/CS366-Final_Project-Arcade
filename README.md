@@ -19,7 +19,7 @@ $ sudo pacman -S ncurses
 
 ## To Build and Run
 ```bash
-$ gcc -ansi -o arcade -Wall arcade.c -lncurses
+$ gcc -ansi -o arcade -Wall arcade.c blackjack.c -lncurses
 $ ./arcade
 ```
 
