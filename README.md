@@ -22,6 +22,11 @@ $ sudo pacman -S ncurses
 $ gcc -ansi -o arcade -Wall arcade.c tictactoe.c blackjack.c -lncurses
 $ ./arcade
 ```
+or
+```bash
+$ make
+$ ./arcade
+```
 
 --- 
 ## Other Notes
@@ -33,3 +38,4 @@ $ ./arcade
 ### Sources and Documentation Used
 - [NCURSES MAN page](https://www.man7.org/linux/man-pages/man3/ncurses.3x.html)
 - [NCURSES Programming How-to](https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/)
+- [Make File Tutorial (Provided in class)](https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/)
