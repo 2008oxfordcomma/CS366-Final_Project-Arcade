@@ -9,3 +9,5 @@ OBJ=arcade.o tictactoe.o blackjack.o
 arcade: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
 
+clean:
+	rm -f $(OBJ) arcade
