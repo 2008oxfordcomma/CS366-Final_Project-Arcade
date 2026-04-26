@@ -1,7 +1,7 @@
 /* Filename: arcade.c
  * Author: Dre Harm
  * Date: 4/22/26
- * Description: This is the main menu for of the program, allowing the user to select from the provided games.
+ * Description: This is the main menu for our program, allowing the user to select from the provided games and inturn run the one they select.
  */
 
 #include <ncurses.h>
@@ -27,6 +27,7 @@ int main(void) {
 
     highlight = 0;
 
+    /* common things to setup the ncurses enviroment */ 
     initscr();
     cbreak();
     noecho();
@@ -42,8 +43,8 @@ int main(void) {
 
             box(stdscr, 0, 0); /* draws the boarder */
 
-            char *title = "=== Arcade Games ===";
-            char *instructions = "Use arrow keys for navigation, 'Enter' to select, and 'q' to quit";
+            char *title = "~~~ CLI-cade ~~~";
+            char *instructions = "Use the arrow keys for navigation, 'Enter' for selecting, and 'q' to quit";
             mvprintw(2, (col - strlen(title)) / 2, "%s", title);
             mvprintw(4, (col - strlen(instructions)) / 2, "%s", instructions);
 
@@ -53,18 +54,18 @@ int main(void) {
             for (i = 0; i < MENU_ITEMS; i++) { /* prints the menu items */
                 int x = (col - strlen(choices[i])) / 2;
 
-                if (i == highlight) { 
-                    attron(A_REVERSE); /* highlights the selected menu item */
-                    mvprintw(startY + i, x, "%s", choices[i]); /* prints the menu item */
-                    attroff(A_REVERSE); /* turns off the highlight for the next item */
-                } else { /* prints the non-highlighted menu items */
+                if (i == highlight) { /* controls the highlighting of the menu items */
+                    attron(A_REVERSE); 
+                    mvprintw(startY + i, x, "%s", choices[i]);
+                    attroff(A_REVERSE); 
+                } else { /* then prints the unhighlighted items */
                     mvprintw(startY + i, x, "%s", choices[i]);
                 }
             }
             refresh();
             ch = getch();
 
-            switch (ch) {
+            switch (ch) { /* these keys are for navigateing the menu and controlling the 'flow' of the program */
                 case KEY_UP:
                     if (highlight > 0) {
                         highlight--;
@@ -91,7 +92,6 @@ int main(void) {
 
         char buffer[64];
 
-        /* eventually this will open and run the different game files */
         if (choice == 0) {
             endwin();
             runTicTacToe();
