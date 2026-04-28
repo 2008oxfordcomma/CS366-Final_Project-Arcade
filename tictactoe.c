@@ -1,7 +1,6 @@
 /* Filename: tictactoe.c
  * Author: Dre Harm
  * Date: 4/16/26
- * Description: 
  */
 
 #include <ncurses.h>
@@ -100,7 +99,7 @@ int runTicTacToe(void) {
                             gameOver = 1;
                             break;
                         }
-                        
+
                         if (isBoardFull(board)) { /* check for a tie */
                             gameOver = 1;
                             winner = -1;
@@ -117,7 +116,6 @@ int runTicTacToe(void) {
                     return 0;
             }
         }
-        
         /* the game is over so display the result*/
         clear();
         box(stdscr, 0, 0);
@@ -147,14 +145,17 @@ int runTicTacToe(void) {
             }
         }
     }
-
     return 0;
 }
 
+/* preconditions/parameters: the 3x3 array that makes up the board, the starting position of the board (x/y of the top left corner)
+ * postcondition: draws the tic-tac-toe board
+*/
 static void drawBoard(int board[BOARD_SIZE][BOARD_SIZE], int startY, int startX) {
     int i, j;
     int lineX, lineY;
     
+    /* draw the cells */
     for (i = 0; i < BOARD_SIZE; i++) {
         for (j = 0; j < BOARD_SIZE; j++) {
             drawCell(i, j, board[i][j], startY, startX);
@@ -169,7 +170,7 @@ static void drawBoard(int board[BOARD_SIZE][BOARD_SIZE], int startY, int startX)
         }
     }
     
-    /* draw the horizontal horizontal */
+    /* draw the horizontal lines */
     for (i = 1; i < BOARD_SIZE; i++) {
         lineY = startY + (i * CELL_HEIGHT);
         for (j = 0; j < BOARD_SIZE * CELL_WIDTH; j++) {
@@ -178,6 +179,9 @@ static void drawBoard(int board[BOARD_SIZE][BOARD_SIZE], int startY, int startX)
     }
 }
 
+/* preconditions/parameters: the row and column of the cell you want to draw, the value of the cell (0=empty, 1=X, 2=O), and the starting position of the board (top left corner)
+ * postcondition: draws the x or o in the specified cell
+*/
 static void drawCell(int row, int col, int value, int startY, int startX) {
     int cellY = startY + (row * CELL_HEIGHT);
     int cellX = startX + (col * CELL_WIDTH);
@@ -199,8 +203,8 @@ static void drawCell(int row, int col, int value, int startY, int startX) {
     }
 }
 
-/*
- * returns 0 if there are no winners
+/* preconditions/parameters: a 3x3 array
+ * postcondition: returns a 1 if player X wins, 2 if player O wins, and 0 if there isn't a winner
 */
 static int checkWinner(int board[BOARD_SIZE][BOARD_SIZE]) {
     int i;
@@ -216,7 +220,6 @@ static int checkWinner(int board[BOARD_SIZE][BOARD_SIZE]) {
             return board[0][i];
         }
     }
-    
     /* check diagonals */
     if (board[0][0] != 0 && board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
         return board[0][0];
@@ -228,6 +231,9 @@ static int checkWinner(int board[BOARD_SIZE][BOARD_SIZE]) {
     return 0;
 }
 
+/* preconditions/parameters: a 3x3 array
+ * postcondition: returns a 1 if the board is full otherwise it returns a 0
+*/
 static int isBoardFull(int board[BOARD_SIZE][BOARD_SIZE]) {
     int i, j;
     
@@ -241,6 +247,9 @@ static int isBoardFull(int board[BOARD_SIZE][BOARD_SIZE]) {
     return 1;
 }
 
+/* preconditions/parameters: the output message 
+* postcondition: displays the inputted message in the center of the screen
+*/
 static void showWinnerMessage(const char *message, int row, int col) {
     attron(A_BOLD);
     mvprintw(row / 2, (col - strlen(message)) / 2, "%s", message);
