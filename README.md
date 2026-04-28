@@ -39,3 +39,4 @@ $ ./arcade
 - [NCURSES MAN page](https://www.man7.org/linux/man-pages/man3/ncurses.3x.html)
 - [NCURSES Programming How-to](https://tldp.org/HOWTO/NCURSES-Programming-HOWTO/)
 - [Make File Tutorial (Provided in class)](https://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/)
+- [YouTube NCURSES TUTORIAL by Casual Coder](https://youtu.be/lV-OPQhPvSM?si=Bk2K55bgXVdDGRJc)
