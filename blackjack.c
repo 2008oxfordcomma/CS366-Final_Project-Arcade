@@ -62,10 +62,7 @@ static int hand_total(Card hand[], int size) {
     	}
     	return total;
 }
-/* Print a single card */
-static void print_card(Card c) {
-    	printw("[%s]", ranks[c.rank]);
-}
+
 /* Prints the hand in the middle of screen */
 static void print_hand(int y, int col, char *label, Card hand[], int size, int hide_first) {
 	char line[256] = "";
